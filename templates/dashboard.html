@@ -1,0 +1,263 @@
+
+{% extends "base.html" %}
+
+{% block title %}Data Visualization Dashboard{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="page-header">
+        <h1><i class="fas fa-chart-bar me-3"></i>Data Visualization Dashboard</h1>
+        <p>Comprehensive analysis of Bangalore real estate market trends and patterns</p>
+    </div>
+
+    <div class="row">
+        <!-- Price Distribution Analysis -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-chart-area me-2"></i>Price Distribution Analysis</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if 'price_distribution_analysis.png' in visualizations %}
+                    <img src="{{ url_for('static', filename='visualizations/price_distribution_analysis.png') }}" 
+                         class="img-fluid rounded" alt="Price Distribution Analysis">
+                    {% else %}
+                    <p class="text-muted">Price distribution chart not available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Correlation Matrix -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-project-diagram me-2"></i>Feature Correlation Matrix</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if 'correlation_matrix.png' in visualizations %}
+                    <img src="{{ url_for('static', filename='visualizations/correlation_matrix.png') }}" 
+                         class="img-fluid rounded" alt="Correlation Matrix">
+                    {% else %}
+                    <p class="text-muted">Correlation matrix not available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Price Analysis -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-rupee-sign me-2"></i>Price Analysis by Features</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if 'price_analysis.png' in visualizations %}
+                    <img src="{{ url_for('static', filename='visualizations/price_analysis.png') }}" 
+                         class="img-fluid rounded" alt="Price Analysis">
+                    {% else %}
+                    <p class="text-muted">Price analysis chart not available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Location Analysis -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-map-marker-alt me-2"></i>Location-wise Analysis</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if 'location_analysis.png' in visualizations %}
+                    <img src="{{ url_for('static', filename='visualizations/location_analysis.png') }}" 
+                         class="img-fluid rounded" alt="Location Analysis">
+                    {% else %}
+                    <p class="text-muted">Location analysis chart not available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Comparison -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-balance-scale me-2"></i>Model Performance Comparison</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if 'model_comparison.png' in visualizations %}
+                    <img src="{{ url_for('static', filename='visualizations/model_comparison.png') }}" 
+                         class="img-fluid rounded" alt="Model Comparison">
+                    {% else %}
+                    <p class="text-muted">Model comparison chart not available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Importance -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-star me-2"></i>Feature Importance</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if 'feature_importance.png' in visualizations %}
+                    <img src="{{ url_for('static', filename='visualizations/feature_importance.png') }}" 
+                         class="img-fluid rounded" alt="Feature Importance">
+                    {% else %}
+                    <p class="text-muted">Feature importance chart not available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Actual vs Predicted -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-crosshairs me-2"></i>Actual vs Predicted Prices</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if 'actual_vs_predicted.png' in visualizations %}
+                    <img src="{{ url_for('static', filename='visualizations/actual_vs_predicted.png') }}" 
+                         class="img-fluid rounded" alt="Actual vs Predicted">
+                    {% else %}
+                    <p class="text-muted">Actual vs predicted chart not available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Residuals Plot -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-chart-line me-2"></i>Residuals Analysis</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if 'residuals_plot.png' in visualizations %}
+                    <img src="{{ url_for('static', filename='visualizations/residuals_plot.png') }}" 
+                         class="img-fluid rounded" alt="Residuals Plot">
+                    {% else %}
+                    <p class="text-muted">Residuals plot not available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Visualizations -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-mouse-pointer me-2"></i>Interactive Visualizations</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <h6>Price vs Square Feet Interactive Plot</h6>
+                            <a href="{{ url_for('static', filename='visualizations/price_vs_sqft_interactive.html') }}" 
+                               target="_blank" class="btn btn-info">
+                                <i class="fas fa-external-link-alt me-2"></i>View Interactive Chart
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <h6>Price by Availability Interactive Plot</h6>
+                            <a href="{{ url_for('static', filename='visualizations/price_by_availability.html') }}" 
+                               target="_blank" class="btn btn-info">
+                                <i class="fas fa-external-link-alt me-2"></i>View Interactive Chart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Insights -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-lightbulb me-2"></i>Key Market Insights</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <div class="p-3 bg-light rounded">
+                                <i class="fas fa-home fa-2x text-primary mb-2"></i>
+                                <h6>Total Properties</h6>
+                                <h4 class="text-primary">5,000</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="p-3 bg-light rounded">
+                                <i class="fas fa-map-marker-alt fa-2x text-success mb-2"></i>
+                                <h6>Locations Covered</h6>
+                                <h4 class="text-success">48</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="p-3 bg-light rounded">
+                                <i class="fas fa-rupee-sign fa-2x text-warning mb-2"></i>
+                                <h6>Avg. Price</h6>
+                                <h4 class="text-warning">₹141.27L</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="p-3 bg-light rounded">
+                                <i class="fas fa-chart-line fa-2x text-info mb-2"></i>
+                                <h6>Price Range</h6>
+                                <h4 class="text-info">₹20L - ₹1134L</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Add click to zoom functionality for images
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('.card-body img');
+        
+        images.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function() {
+                // Create modal for image zoom
+                const modal = document.createElement('div');
+                modal.className = 'modal fade';
+                modal.innerHTML = `
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">${this.alt}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <img src="${this.src}" class="img-fluid" alt="${this.alt}">
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                const bsModal = new bootstrap.Modal(modal);
+                bsModal.show();
+                
+                // Remove modal after hiding
+                modal.addEventListener('hidden.bs.modal', function() {
+                    document.body.removeChild(modal);
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}
